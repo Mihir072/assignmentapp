@@ -64,25 +64,32 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['id'],
-      title: json['title'],
-      description: json['description'],
-      price: json['price'].toDouble(),
-      discountPercentage: json['discountPercentage'].toDouble(),
-      thumbnail: json['thumbnail'],
-      returnPolicy: json['returnPolicy'],
-      dimensions: ProductDimensions.fromJson(json['dimensions']),
-      brand: json['brand'],
-      stock: json['stock'],
-      sku: json['sku'],
-      weight: json['weight'],
-      warrantyInformation: json['warrantyInformation'],
-      shippingInformation: json['shippingInformation'],
-      availabilityStatus: json['availabilityStatus'],
-      reviews: (json['reviews'] as List<dynamic>)
-          .map((review) => ProductReview.fromJson(review))
-          .toList(),
-      meta: ProductMeta.fromJson(json['meta']),
+      id: json['id'] ?? 0,
+      title: json['title'] ?? 'No Title',
+      description: json['description'] ?? 'No Description',
+      price: (json['price'] ?? 0).toDouble(),
+      discountPercentage: (json['discountPercentage'] ?? 0).toDouble(),
+      thumbnail: json['thumbnail'] ?? '',
+      returnPolicy: json['returnPolicy'] ?? 'No return policy available',
+      dimensions: json['dimensions'] != null
+          ? ProductDimensions.fromJson(json['dimensions'])
+          : ProductDimensions(width: 0, height: 0, depth: 0),
+      brand: json['brand'] ?? 'Unknown',
+      stock: json['stock'] ?? 0,
+      sku: json['sku'] ?? 'N/A',
+      weight: json['weight'] ?? 0,
+      warrantyInformation: json['warrantyInformation'] ?? 'No warranty info',
+      shippingInformation:
+          json['shippingInformation'] ?? 'Shipping details not available',
+      availabilityStatus: json['availabilityStatus'] ?? 'Unknown',
+      reviews: json['reviews'] != null
+          ? (json['reviews'] as List<dynamic>)
+              .map((review) => ProductReview.fromJson(review))
+              .toList()
+          : [],
+      meta: json['meta'] != null
+          ? ProductMeta.fromJson(json['meta'])
+          : ProductMeta(createdAt: '', updatedAt: '', barcode: '', qrCode: ''),
       quantity: 1,
     );
   }

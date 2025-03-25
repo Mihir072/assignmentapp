@@ -1,4 +1,4 @@
-import 'package:assingmentapp/bloc/cart_bloc.dart';
+import 'package:assingmentapp/bloc/cart/cart_bloc.dart';
 import 'package:assingmentapp/pages/card_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,11 +6,13 @@ import '../pages/home_page.dart';
 import '../util/colors.dart';
 
 class BottomBarWidget extends StatefulWidget {
+  const BottomBarWidget({super.key});
+
   @override
-  _BottomBarWidgetState createState() => _BottomBarWidgetState();
+  BottomBarWidgetState createState() => BottomBarWidgetState();
 }
 
-class _BottomBarWidgetState extends State<BottomBarWidget> {
+class BottomBarWidgetState extends State<BottomBarWidget> {
   int _currentIndex = 0;
   late List<Widget> _pages;
 
@@ -29,7 +31,7 @@ class _BottomBarWidgetState extends State<BottomBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_currentIndex], 
+      body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: mainColor,
         selectedItemColor: Colors.white,

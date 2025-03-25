@@ -12,12 +12,22 @@ abstract class ProductState extends Equatable {
 
 class ProductInitial extends ProductState {}
 
-class ProductLoaded extends ProductState {
-  const ProductLoaded(List<Product> products, {super.isLoadingMore})
-      : super(products: products);
-}
-
 class ProductError extends ProductState {
   final String message;
   const ProductError(this.message);
+}
+
+class ProductLoaded extends ProductState {
+  @override
+  // ignore: overridden_fields
+  final List<Product> products;
+
+  @override
+  // ignore: overridden_fields
+  final bool isLoadingMore;
+
+  const ProductLoaded(this.products, {this.isLoadingMore = false});
+
+  @override
+  List<Object> get props => [products, isLoadingMore];
 }
