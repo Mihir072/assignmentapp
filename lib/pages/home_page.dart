@@ -125,7 +125,7 @@ class HomePageState extends State<HomePage> {
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            border: Border.all(color: Colors.black),
+                            border: Border.all(color: mainColor),
                             borderRadius: BorderRadius.circular(24),
                           ),
                           child: Column(
